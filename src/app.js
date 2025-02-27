@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 let mainWindow;
-let moodleLink = 'https://moodle.maynoothuniversity.ie/';
+let moodleLink = 'https://moodle.maynoothuniversity.ie';
 
 function createWindow() {
 
@@ -32,19 +32,20 @@ function createWindow() {
       //Load website
       if (validCookies.length > 0) {
         console.log('Found valid cookies!');
-        mainWindow.loadURL(moodleLink);
+        mainWindow.loadURL(moodleLink+'/my');
       } else {
         console.log('No valid cookies found, going to login');
-        mainWindow.loadURL(moodleLink + 'login/index.php');
+        mainWindow.loadURL(moodleLink + '/login/index.php');
       }
     }).catch((err) => {
       console.log('Error getting cookies:', err);
-      mainWindow.loadURL(moodleLink + 'login/index.php');
+      mainWindow.loadURL(moodleLink + '/login/index.php');
     })
   
     //Wait till we load into the main page!
-    mainWindow.on('did-navigate', (event, url) => {
-      if (url.includes(moodleLink+'/my/')) {
+    mainWindow.webContents.on('did-navigate', (event, url) => {
+      console.log(url);
+      if (url.includes(moodleLink+'/my')) {
         console.log('Successfully logged in!');
 
         ses.cookies.flushStore().then(() => {

@@ -1,4 +1,27 @@
-body {
-    background-color: #1e1e1e;
-    color: #ffffff;
+/* Main Background */
+#page-wrapper {
+    background-color: #1c1a30;
+}
+html {
+    background-color: #1c1a30;
+}
+
+/* Background of widgets */
+.card-body {
+    background-color: #181626;
+}
+
+/* Course Content */
+.list-group li {
+    background-color: #5555;
+}
+
+.fixed-top {
+    background-color: #4444;
+}
+
+.alert-info{
+    color:#00434e;
+    background-color:#2f3333;
+    border-color:#0c1213
 }
